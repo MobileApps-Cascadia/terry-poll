@@ -9,5 +9,8 @@ AUDIENCE
 
 People of all ages (recommended for ages 13 and above)
 Targeted toward people favoring social media
+(Warning: potential strong language & aggressive cyber behavior)
+
+
 
 Spring 2014 
