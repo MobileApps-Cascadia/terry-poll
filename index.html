@@ -1,0 +1,223 @@
+<!DOCTYPE html> 
+<html lang = “en”> 
+<head> 
+	<meta charset = “utf-8” />
+	<title> List App </title> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+	<meta name = “viewport” content = “width = device-width, initial-scale = 1, maximum-scale = 1” />
+	
+	<style> 
+		* {
+			font-family: Andy; 
+		}
+		
+		#basic {
+			height: 25px; 
+			width: 50%; 
+		}
+		
+		header[data-role="header"] h1.ui-title{
+			margin-left: .2em; 
+			text-align: left; 
+			background: #7092BE; 
+		}
+		
+		header[data-role="header"] input{
+			position: absolute; 
+			left: 80px; 
+			top: 2px; 
+			background: white; 
+			font-size: 10px; 
+			
+		}
+		
+		footer .ui-grid-b li a {
+			background: #7092BE; 
+		}
+		
+		a.ui-btn.ui-btn-inline.ui-shadow.ui-btn-corner-all.ui-mini {
+			float:  right;
+			position: relative; 
+			bottom: 25px; 
+			right: 5%; 
+		}
+		
+		ul li .answer {
+			font-size: 10px; 	
+			width: 95%; 
+		}	
+		
+		.back {
+			right: 300px; 
+		}
+	</style> 
+
+</head> 
+<body> 
+
+<!-- Below is the "home" page --> 
+<div data-role = "page" id = "recentPage"> 
+<header data-role = "header" style="height: 35px; background: #7092BE"> 
+	<h1 style="margin-right: 0px" data-inline="true"> Poll It Off </h1> 
+	<input type="text" name="name" id="basic" value="" data-inline="true" data-mini="true"/>
+</header>
+
+<div> 
+<p style="margin: 5px"> Got a question? Ask here: </p>
+<input type="text" name="name" id="basic" value="" data-inline="true" data-mini="true" style="margin-top: 5px; margin-bottom: 5px; margin-left: 5px; width: 95%"/>
+
+<ul style="list-style: none; margin-top: 5px">
+		<input id="width" type="hidden" name="width" value="175"></input>
+    	<li> <input class="answer" type="text" minlength="100" onclick="updateappearance(1)" onchange="updateanswer(1)" onkeyup="updateanswer(1)" onkeydown="updateanswer(1)" name="answer1"></input></li>
+    	<li> <input class="answer" type="text" maxlength="100" onclick="updateappearance(2)" onchange="updateanswer(2)" onkeyup="updateanswer(2)" onkeydown="updateanswer(2)" name="answer2"></input> </li>
+    	<li> <input class="answer" type="text" maxlength="100" onclick="updateappearance(3)" onchange="updateanswer(3)" onkeyup="updateanswer(3)" onkeydown="updateanswer(3)" name="answer3"></input>
+       <!-- <a id="anotherlink" href="javascript:add_answer()"> + Add Answer Field </a> --> 
+    	<a class="qp-btn-aa" onclick="qpAddAnswer()" href="javascript:void(0)"> +Add Answer </a>
+	</ul>
+
+<!-- data-mini="true" makes button vertically smaller --> 
+<!-- data-inline="true" makes button horizontally small--> 
+<a href="#post" data-role="button" data-mini="true" data-inline="true"> Post </a>
+</div> 
+
+<div data-role="main" class="ui-content" style="width: 95%">
+	<img src="E:\poll_it_off/pic.png" alt="okay" style="display: inline; float: left; width: 50px; left: -10px; position: relative"/> 
+
+    <form method="post" action="demoform.asp" style="min-width: 50%; max-width:80%; display: inline; float: left; left: -5px; position: relative; bottom: 5px;">
+      <fieldset data-role="controlgroup">
+      <legend> Was thinking about making this app. What do you think? </legend>
+        <label for="male">Yes</label>
+		<input type="radio" name="gender" id="male" value="male"> </input>
+		<!--
+        <input type="radio" name="gender" id="male" value="male">
+		Stuff inside input.
+		</input>
+		-->
+        <label for="female">No</label>
+        <input type="radio" name="gender" id="female" value="female">	
+      </fieldset>
+    </form>
+	
+	<img src="E:\poll_it_off/comment.png" alt="okay" style="display: block; max-width: 100%; position: relative"/> 
+</div>
+  
+<footer data-role = "footer" data-position = "fixed"> 
+	<nav data-role = "navbar" id="ok"> 
+		<ul> 
+			<li> <a href="#recentPage"> Recent </a> 
+			<li> <a href="#popularPage"> Popular </a>
+			<li> <a href="#quickPollPage"> QuickPoll </a>
+		</ul> 
+	</nav> 
+</footer> 
+</div> 
+
+<div data-role = "page" id = "popularPage"> 
+<header data-role = "header" style="height: 35px; background: #7092BE"> 
+	<h1 style="margin-right: 0px" data-inline="true"> Poll It Off </h1> 
+	<input type="text" name="name" id="basic" value="" data-inline="true" data-mini="true"/>
+</header>
+
+<p style="color: red">
+	NOTE: There is only one poll to display what the look of it is. The rest of the app does not show any more polls because they will derive from user input.
+	</br> </br>
+	Popular tab will display all the popular/trending polls. 
+	</br> </br>
+	QuickPoll will display timed polls that people want to have answered in a specific time frame. 
+</p> 
+
+<footer data-role = "footer" data-position = "fixed"> 
+	<nav data-role = "navbar"> 
+		<ul> 
+			<li> <a href="#recentPage"> Recent </a> 
+			<li> <a href="#popularPage"> Popular </a>
+			<li> <a href="#quickPollPage"> QuickPoll </a>
+		</ul> 
+	</nav> 
+</footer> 
+</div>
+
+<div data-role = "page" id = "quickPollPage"> 
+<header data-role = "header" style="height: 35px; background: #7092BE"> 
+	<h1 style="margin-right: 0px" data-inline="true"> Poll It Off </h1> 
+	<input type="text" name="name" id="basic" value="" data-inline="true" data-mini="true"/>
+</header>
+
+<!--
+<a href = "#quickPollQuestion" data-role="button" data-mini="true" data-inline="true" class="ui-btn-left" style="float: left; top: 10px; left: 5px"> Add Poll </a>
+-->
+<a href = "#quickPollQuestion" data-role="button" class="ui-btn-left" style="width: 97%"> Add Poll </a>
+
+<footer data-role = "footer" data-position = "fixed"> 
+	<nav data-role = "navbar"> 
+		<ul> 
+			<li> <a href="#recentPage"> Recent </a> 
+			<li> <a href="#popularPage"> Popular </a>
+			<li> <a href="#quickPollPage"> QuickPoll </a>
+		</ul> 
+	</nav> 
+</footer> 
+</div>
+
+<div data-role = "page" id = "quickPollQuestion"> 
+<header data-role = "header" style="height: 35px; background: #7092BE"> 
+	<h1 style="margin-right: 0px" data-inline="true"> Poll It Off </h1> 
+</header>
+
+<article data-role = "content"> 
+	<a href="#quickPollPage" data-role="button" data-mini="true" data-inline="true" class="ui-btn-left" style="float: left; top: -14px; left: -2%"> Back </a>
+	</br>  
+	<label for="info" style="float:left; position: relative; left: -60px; top: 4px; bottom: 10px">Need a Quick Opinion? Ask here!</label>
+    
+    <input class="question" type="text" maxlength="150" onclick="updateappearance(1)" onchange="updatequestion()" onkeyup="updatequestion()" onkeydown="updatequestion()" value="" name="question" style="font-size: 10px"></input>
+    
+    <ul style="list-style: none">
+		<input id="width" type="hidden" name="width" value="175"></input>
+    	<li> <input class="answer" type="text" maxlength="110" onclick="updateappearance(1)" onchange="updateanswer(1)" onkeyup="updateanswer(1)" onkeydown="updateanswer(1)" name="answer1" style="width: 99%"></input></li>
+    	<li> <input class="answer" type="text" maxlength="110" onclick="updateappearance(2)" onchange="updateanswer(2)" onkeyup="updateanswer(2)" onkeydown="updateanswer(2)" name="answer2" style="width: 99%"></input> </li>
+    	<li> <input class="answer" type="text" maxlength="110" onclick="updateappearance(3)" onchange="updateanswer(3)" onkeyup="updateanswer(3)" onkeydown="updateanswer(3)" name="answer3" style="width: 99%"></input>
+       <!-- <a id="anotherlink" href="javascript:add_answer()"> + Add Answer Field </a> --> 
+    	<a class="qp-btn-aa" onclick="qpAddAnswer()" href="javascript:void(0)"> Add Answer </a>
+	</ul>
+    
+    <div> 
+    	<p> When Do You Want Your Poll Answered By: <p> 
+		<select>
+			<option>15 min</option>
+			<option>30 min</option>
+			<option >1 hour</option>
+  			<option>2 hours</option>
+  			<option >3 hours</option>
+			<option>6 hours</option>
+			<option>12 hours</option>
+			<option>1 day</option>
+			<option>2 days</option>
+			<option>3 days</option>
+			<option>4 days</option>
+			<option>5 days</option>
+			<option>6 days</option>
+			<option>1 week</option>
+		</select>
+    <div>     
+    <input type="submit" data-inline="true" value="Submit" style="float: right; margin-top: 5px">
+</article>
+
+<footer data-role = "footer" data-position = "fixed"> 
+	<nav data-role = "navbar"> 
+		<ul> 
+			<li> <a href="#recentPage"> Recent </a> 
+			<li> <a href="#popularPage"> Popular </a>
+			<li> <a href="#quickPollPage"> QuickPoll </a>
+			
+			<!--
+			<li> <a href="#recentPage" data-icon="bars"> Recent </a> 
+			<li> <a href="#popularPage" data-icon="heart"> Popular </a>
+			<li> <a href="#quickPollPage" data-icon="star"> QuickPoll </a>
+			--> 
+		</ul> 
+	</nav> 
+</footer> 
+</div>
+</body> 
